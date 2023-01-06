@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-sm-4">
+      <a [routerLink]="['.']" class="btn btn-purple rounded-pill w-md waves-effect waves-light mb-3"><i
+              class="mdi mdi-plus"></i>
+          Create User</a>
+  </div>
+  <div class="col-sm-8">
+      <div class="float-end">
+          <form class="row g-2 align-items-center mb-2 mb-sm-0">
+              <div class="col-auto">
+                  <div class="d-flex">
+                      <label class="d-flex align-items-center">Phase
+                          <select class="form-select form-select-sm d-inline-block ms-2">
+                              <option>All Projects(6)</option>
+                              <option>Complated</option>
+                              <option>Progress</option>
+                          </select>
+                      </label>
+                  </div>
+              </div>
+              <div class="col-auto">
+                  <div class="d-flex">
+                      <label class="d-flex align-items-center">Sort
+                          <select class="form-select form-select-sm d-inline-block ms-2">
+                              <option>Date</option>
+                              <option>Name</option>
+                              <option>End date</option>
+                              <option>Start Date</option>
+                          </select>
+                      </label>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div><!-- end col-->
+</div>
+<!-- end row -->
+
+
+<div class="row">
+  <div class="col-xl-12">
+      <div class="card">
+        <div class="col-md-12">
+          <div class="card">
+              <div class="table-responsive">
+                  <table class="table table-bordered table-striped">
+                      <thead class="table-dark">
+                          <tr>
+                              <th>id</th>
+                              <th>Name</th>
+                              <th>Creation Date</th>
+                              <th>Status</th>
+                              <th>Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let item of user">
+                              <td>{{item.id}}</td>
+                              <td>{{item.profile.name}}</td>
+                              <td>{{item.registrationDate | date}}</td>
+                              <td>
+                                <label class="badge bg-success">{{item.accountStatus}}</label>
+                              </td>
+                              <td>
+                                  <button class="btn btn-sm btn-warning">Edit</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      </div>
+
+  </div><!-- end col-->
+
+</div>
+<!-- end row -->
+
+

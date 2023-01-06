@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-sm-4">
+        <a [routerLink]="['.']" class="btn btn-purple rounded-pill w-md waves-effect waves-light mb-3"><i
+                class="mdi mdi-plus"></i>
+            Create Item</a>
+    </div>
+    <div class="col-sm-8">
+        <div class="float-end">
+            <form class="row g-2 align-items-center mb-2 mb-sm-0">
+                <div class="col-auto">
+                    <div class="d-flex">
+                        <label class="d-flex align-items-center">Phase
+                            <select class="form-select form-select-sm d-inline-block ms-2">
+                                <option>All Projects(6)</option>
+                                <option>Complated</option>
+                                <option>Progress</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex">
+                        <label class="d-flex align-items-center">Sort
+                            <select class="form-select form-select-sm d-inline-block ms-2">
+                                <option>Date</option>
+                                <option>Name</option>
+                                <option>End date</option>
+                                <option>Start Date</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- end col-->
+</div>
+<!-- end row -->
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+          <div class="col-md-12">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <!-- <th></th> -->
+                                <th colspan="2" class="text-center"> House Type</th>
+                                <th>Category</th>
+                                <th>Subcategory</th>
+                                <th>Name</th>
+                                <th class="text-center">Is Dynamic</th>
+                                <th class="text-center">Min Level</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items">
+                                <td class="text-center">
+                                  <img width="30" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/house-icon.png" alt="house">
+                                </td>
+                                <td>{{item.houseType}}</td>
+                                <td>{{item.category}}</td>
+                                <td>{{item.subCategory}}</td>
+                                <td>{{item.name}}</td>
+                                <td class="text-center">
+                                  <i *ngIf="item.isDynamic" class="mdi mdi-check md-18 text-success"></i>
+                                  <i *ngIf="!item.isDynamic" class="mdi mdi-close md-18 text-danger"></i>
+                                </td>
+                                <td class="text-center"> <span class="badge bg-info">{{item.minimumLevel}}</span></td>
+                                <td>{{item.price | currency}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div><!-- end col-->
+
+</div>
+<!-- end row -->
+
+
