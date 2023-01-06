@@ -515,7 +515,7 @@ body[data-leftbar-size="compact"]:not([data-leftbar-size="condensed"]) {
 }
 
 // Leftbar-dark
-body[data-leftbar-color="dark"] {
+body {
     .logo-box {
         background-color: $bg-leftbar-dark;
 
