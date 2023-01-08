@@ -10,76 +10,77 @@ import { AuthenticationService } from 'src/app/core/service/auth.service';
 import { User } from 'src/app/core/models/auth.models';
 
 @Component({
-  selector: 'app-auth-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+	selector: 'app-auth-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
-  });
-  formSubmitted: boolean = false;
-  error: string = '';
-  returnUrl: string = '/';
-  loading: boolean = false;
+	loginForm: FormGroup = this.fb.group({
+		email: ['', [Validators.required, Validators.email]],
+		password: ['', Validators.required]
+	});
+	formSubmitted: boolean = false;
+	error: string = '';
+	returnUrl: string = '/';
+	loading: boolean = false;
 
-  constructor (
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private fb: FormBuilder
-  ) { }
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private authenticationService: AuthenticationService,
+		private fb: FormBuilder
+	) { }
 
-  ngOnInit(): void {
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.returnUrl;
-    // this.prueba();
-  }
+	ngOnInit(): void {
+		// get return url from route parameters or default to '/'
+		this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.returnUrl;
+		// this.prueba();
+	}
 
-  /**
-   * convenience getter for easy access to form fields
-   */
-  get formValues() { return this.loginForm.controls; }
+	/**
+	 * convenience getter for easy access to form fields
+	 */
+	get formValues() { return this.loginForm.controls; }
 
-  /**
-  * On submit form
-  */
-  onSubmit(): void {
-    this.formSubmitted = true;
-    if (this.loginForm.valid) {
-      this.loading = true;
-      this.authenticationService.login('adminto@coderthemes.com', 'test')
-        .pipe(first())
-        .subscribe(
-          (data: User) => {
-            this.router.navigate([this.returnUrl]);
-          },
-          (error: string) => {
-            this.error = error;
-            this.loading = false;
-          });
-      }
-  }
+	/**
+	* On submit form
+	*/
+	onSubmit(): void {
+		this.formSubmitted = true;
+		if (this.loginForm.valid) {
+			this.loading = true;
+			const { email, password } = this.loginForm.value;
+			this.authenticationService.login(email, password)
+				.pipe(first())
+				.subscribe(
+					(data: User) => {
+						this.router.navigate([this.returnUrl]);
+					},
+					(error: string) => {
+						this.error = error;
+						this.loading = false;
+					});
+		}
+	}
 
-  async prueba(){
-    return await fetch(
-      "https://dpv7ueckjb72i5js34zrx7ggym0xwweg.lambda-url.us-east-1.on.aws/",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          username: "Gareth Mc Cumskey",
-          email: "kevin@gmail.com",
-          password: "123asd456",
-        }),
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "application/json",
-        },
-      }
-    ).then((response) => response.json());
-  };
+	async prueba() {
+		return await fetch(
+			"https://dpv7ueckjb72i5js34zrx7ggym0xwweg.lambda-url.us-east-1.on.aws/",
+			{
+				method: "POST",
+				body: JSON.stringify({
+					username: "Gareth Mc Cumskey",
+					email: "kevin@gmail.com",
+					password: "123asd456",
+				}),
+				headers: {
+					Accept: "*/*",
+					"Content-Type": "application/json",
+				},
+			}
+		).then((response) => response.json());
+	};
 }
 
 
