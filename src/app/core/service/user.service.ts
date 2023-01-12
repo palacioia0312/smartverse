@@ -5,9 +5,9 @@ import { User } from '../models/auth.models';
 
 @Injectable({ providedIn: 'root' })
 export class UserProfileService {
-    constructor (private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
-    getAll() {
-        return this.http.get<User[]>(`/api/login`);
-    }
+	getAll() {
+		return this.http.get<User[]>(`/api/login`);
+	}
 }

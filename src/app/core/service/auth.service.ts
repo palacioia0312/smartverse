@@ -10,13 +10,11 @@ import { loggedInUser } from '../helpers/utils';
 import { User } from '../models/auth.models';
 import { StorageService } from '../helpers/storage.service';
 
-
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 	user: User | null = null;
 
-	constructor(private http: HttpClient, private _storage: StorageService) {
-	}
+	constructor(private http: HttpClient, private _storage: StorageService) {}
 
 	/**
 	 * Returns the current user
@@ -34,9 +32,8 @@ export class AuthenticationService {
 	 * @param password password of user
 	 */
 	login(email: string, password: string): Observable<User> {
-
-		return this.http.post<User>(`/api/login`, { email, password })
-			.pipe(map(user => {
+		return this.http.post<User>(`/api/login`, { email, password }).pipe(
+			map((user) => {
 				// login successful if there's a jwt token in the response
 				if (user && user.token) {
 					this.user = user;
@@ -45,7 +42,8 @@ export class AuthenticationService {
 					//   sessionStorage.setItem('currentUser', JSON.stringify(user));
 				}
 				return user;
-			}));
+			})
+		);
 	}
 
 	/**
@@ -55,12 +53,10 @@ export class AuthenticationService {
 	 * @param password password of user
 	 */
 	signup(name: string, email: string, password: string): Observable<User> {
-		return this.http.post<User>(`/api/signup`, { name, email, password })
-			.pipe(map(user => user));
-
+		return this.http
+			.post<User>(`/api/signup`, { name, email, password })
+			.pipe(map((user) => user));
 	}
-
-
 
 	/**
 	 * Logout the user
@@ -71,4 +67,3 @@ export class AuthenticationService {
 		this.user = null;
 	}
 }
-

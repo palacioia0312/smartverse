@@ -1,5 +1,5 @@
 export interface ProfileOptionItem {
-    label?: string;
-    icon?: string;
-    redirectTo?: string;
+	label?: string;
+	icon?: string;
+	redirectTo?: string;
 }

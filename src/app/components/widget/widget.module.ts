@@ -17,59 +17,62 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { RemaindersComponent } from './remainders/remainders.component';
 import { MemberCardComponent } from './member-card/member-card.component';
-import { NgbAccordionModule, NgbDropdownModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+	NgbAccordionModule,
+	NgbDropdownModule,
+	NgbProgressbarModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { PricingCardsComponent } from './pricing-cards/pricing-cards.component';
 import { FaqComponent } from './faq/faq.component';
 
-
 @NgModule({
-  declarations: [
-    VectormapComponent,
-    CanadaMapComponent,
-    WorldMapComponent,
-    UsaMapComponent,
-    IraqMapComponent,
-    ItalyMapComponent,
-    RussiaMapComponent,
-    SpainMapComponent,
-    StatisticsWidget1Component,
-    StatisticsWidget2Component,
-    StatisticsWidget3Component,
-    UserCardComponent,
-    TeamMembersComponent,
-    RemaindersComponent,
-    MemberCardComponent,
-    PricingCardsComponent,
-    FaqComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgApexchartsModule,
-    NgbProgressbarModule,
-    NgbDropdownModule,
-    NgbAccordionModule,
-    CountUpModule,
-  ],
-  exports: [
-    VectormapComponent,
-    CanadaMapComponent,
-    WorldMapComponent,
-    UsaMapComponent,
-    IraqMapComponent,
-    ItalyMapComponent,
-    RussiaMapComponent,
-    SpainMapComponent,
-    StatisticsWidget1Component,
-    StatisticsWidget2Component,
-    StatisticsWidget3Component,
-    UserCardComponent,
-    TeamMembersComponent,
-    RemaindersComponent,
-    MemberCardComponent,
-    PricingCardsComponent,
-    FaqComponent
-  ]
+	declarations: [
+		VectormapComponent,
+		CanadaMapComponent,
+		WorldMapComponent,
+		UsaMapComponent,
+		IraqMapComponent,
+		ItalyMapComponent,
+		RussiaMapComponent,
+		SpainMapComponent,
+		StatisticsWidget1Component,
+		StatisticsWidget2Component,
+		StatisticsWidget3Component,
+		UserCardComponent,
+		TeamMembersComponent,
+		RemaindersComponent,
+		MemberCardComponent,
+		PricingCardsComponent,
+		FaqComponent,
+	],
+	imports: [
+		CommonModule,
+		RouterModule,
+		NgApexchartsModule,
+		NgbProgressbarModule,
+		NgbDropdownModule,
+		NgbAccordionModule,
+		CountUpModule,
+	],
+	exports: [
+		VectormapComponent,
+		CanadaMapComponent,
+		WorldMapComponent,
+		UsaMapComponent,
+		IraqMapComponent,
+		ItalyMapComponent,
+		RussiaMapComponent,
+		SpainMapComponent,
+		StatisticsWidget1Component,
+		StatisticsWidget2Component,
+		StatisticsWidget3Component,
+		UserCardComponent,
+		TeamMembersComponent,
+		RemaindersComponent,
+		MemberCardComponent,
+		PricingCardsComponent,
+		FaqComponent,
+	],
 })
-export class WidgetModule { }
+export class WidgetModule {}

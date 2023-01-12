@@ -6,18 +6,9 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdvancedTableComponent } from './advanced-table.component';
 import { NgbSortableHeaderDirective } from './sortable.directive';
 
-
-
 @NgModule({
-  declarations: [
-    AdvancedTableComponent,
-    NgbSortableHeaderDirective
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    NgbPaginationModule
-  ],
-  exports: [AdvancedTableComponent]
+	declarations: [AdvancedTableComponent, NgbSortableHeaderDirective],
+	imports: [CommonModule, FormsModule, NgbPaginationModule],
+	exports: [AdvancedTableComponent],
 })
-export class AdvancedTableModule { }
+export class AdvancedTableModule {}

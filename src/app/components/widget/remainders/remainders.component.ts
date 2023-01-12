@@ -3,17 +3,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Remainder } from './remainder.model';
 
 @Component({
-  selector: 'app-widget-remainders',
-  templateUrl: './remainders.component.html',
-  styleUrls: ['./remainders.component.scss']
+	selector: 'app-widget-remainders',
+	templateUrl: './remainders.component.html',
+	styleUrls: ['./remainders.component.scss'],
 })
 export class RemaindersComponent implements OnInit {
+	@Input() remainders: Remainder[] = [];
 
-  @Input() remainders: Remainder[] = [];
+	constructor() {}
 
-  constructor () { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }

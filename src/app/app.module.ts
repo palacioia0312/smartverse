@@ -9,16 +9,17 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { JoyrideModule } from 'ngx-joyride';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    JoyrideModule.forRoot(),
-    SweetAlert2Module.forRoot(),
-    CoreModule,
-    LayoutModule,
-    AppRoutingModule],
-  providers: [],
-  bootstrap: [AppComponent],
+	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		JoyrideModule.forRoot(),
+		SweetAlert2Module.forRoot(),
+		CoreModule,
+		LayoutModule,
+		AppRoutingModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

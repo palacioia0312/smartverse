@@ -4,18 +4,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TeamMember } from './team-member.model';
 
 @Component({
-  selector: 'app-widget-team-members',
-  templateUrl: './team-members.component.html',
-  styleUrls: ['./team-members.component.scss']
+	selector: 'app-widget-team-members',
+	templateUrl: './team-members.component.html',
+	styleUrls: ['./team-members.component.scss'],
 })
 export class TeamMembersComponent implements OnInit {
+	@Input() teamMembers: TeamMember[] = [];
+	@Input() cardTitle: string = '';
 
-  @Input() teamMembers: TeamMember[] = [];
-  @Input() cardTitle: string = '';
+	constructor() {}
 
-  constructor () { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }

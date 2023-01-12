@@ -5,22 +5,13 @@ import { RouterModule } from '@angular/router';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { CountdownDirective } from './count-down/countdown.directive';
 
-
-
 @NgModule({
-  declarations: [
-    DefaultLayoutComponent,
-    PreloaderComponent,
-    CountdownDirective
-  ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  exports: [
-    DefaultLayoutComponent,
-    PreloaderComponent,
-    CountdownDirective
-  ]
+	declarations: [
+		DefaultLayoutComponent,
+		PreloaderComponent,
+		CountdownDirective,
+	],
+	imports: [CommonModule, RouterModule],
+	exports: [DefaultLayoutComponent, PreloaderComponent, CountdownDirective],
 })
-export class UiModule { }
+export class UiModule {}
