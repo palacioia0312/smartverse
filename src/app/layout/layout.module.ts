@@ -2,18 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
-import { VerticalModule } from './vertical/vertical.module';
-import { LayoutContainerComponent } from './layout-container/layout-container.component';
 import { PublicLayoutComponent } from './public-layout/public-layout.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 @NgModule({
-	declarations: [LayoutContainerComponent, PublicLayoutComponent],
-	imports: [
-		CommonModule,
-		RouterModule,
-		SharedModule,
-		VerticalModule
-	],
-	exports: [LayoutContainerComponent, PublicLayoutComponent],
+	declarations: [PublicLayoutComponent, MainLayoutComponent],
+	imports: [CommonModule, RouterModule, SharedModule],
+	exports: [PublicLayoutComponent, MainLayoutComponent],
 })
 export class LayoutModule {}

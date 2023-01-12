@@ -4,21 +4,21 @@ import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import {
 	changeBodyAttribute,
 	getLayoutConfig,
-} from '../../shared/helper/utils';
+} from '../shared/helper/utils';
 
 // service
 import { EventService } from 'src/app/core/service/event.service';
 
 // constant
 import { EventType } from 'src/app/core/constants/events';
-import { LayoutType } from '../../shared/config/layout.model';
+import { LayoutType } from '../shared/config/layout.model';
 
 @Component({
 	selector: 'app-vertical-layout',
-	templateUrl: './layout.component.html',
-	styleUrls: ['./layout.component.scss'],
+	templateUrl: './main-layout.component.html',
+	styleUrls: ['./main-layout.component.scss'],
 })
-export class VerticalLayoutComponent implements OnInit {
+export class MainLayoutComponent implements OnInit {
 	@Input() layoutColor: string = '';
 	@Input() layoutWidth: string = '';
 	leftbarPosition: string = '';
