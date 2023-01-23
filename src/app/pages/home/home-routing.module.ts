@@ -10,9 +10,19 @@ const routes: Routes = [
 			),
 	},
 	{
-		path: 'items',
+		path: 'settings/item',
 		loadChildren: () =>
-			import('./../../modules/projects/projects.module').then((m) => m.ProjectsModule),
+			import('./../../modules/settings/items/items.module').then((m) => m.ItemsModule),
+	},
+	{
+		path: 'settings/house',
+		loadChildren: () =>
+			import('./../../modules/settings/house/house.module').then((m) => m.HouseModule),
+	},
+	{
+		path: 'settings/neighborhood',
+		loadChildren: () =>
+			import('./../../modules/settings/neighborhood/nightborhood.module').then((m) => m.NeighborhoodModule),
 	},
 	{
 		path: 'security/user',

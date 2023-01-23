@@ -1,0 +1,103 @@
+<div class="row">
+	<div class="col-sm-4">
+		<a [routerLink]="['.']" class="btn btn-purple rounded-pill w-md waves-effect waves-light mb-3"
+			(click)="fnModal('show')"><i class="mdi mdi-plus"></i>
+			Create Item</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xl-12">
+		<div class="card">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="table-responsive t-height">
+						<table class="table table-bordered table-striped">
+							<thead class="table-dark">
+								<tr>
+									<!-- <th></th> -->
+									<th colspan="2" class="text-center"> Item Tag</th>
+									<th>Category</th>
+									<th>Subcategory</th>
+									<th>Name</th>
+									<th class="text-center">Description</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let item of items">
+									<td class="text-center">
+										<img width="30"
+											src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/house-icon.png"
+											alt="house">
+									</td>
+									<td>{{item.itemTag}}</td>
+									<td>{{item.categories}}</td>
+									<td>{{item.subCategories}}</td>
+									<td>{{item.displayName}}</td>
+									<td>{{item.displayDescription}}</td>
+									<td>{{item.tokenPrice | currency}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalItems" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Item modal</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fnModal('hide')">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Category</label>
+					<select class="form-select" aria-label="Default select example">
+						<option selected disabled>Select a category</option>
+						<option value="1">1 - Category 1</option>
+						<option value="2">2 - Category 2</option>
+						<option value="3">3 - Category 3</option>
+						<option value="4">4 - Category 4</option>
+						<option value="5">5 - Category 5</option>
+					</select>
+				</div>
+
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Subcategory</label>
+					<select class="form-select" aria-label="Default select example">
+						<option selected disabled>Select a Subcategory</option>
+						<option value="1">1 - Subcategory 1</option>
+						<option value="2">2 - Subcategory 2</option>
+						<option value="3">3 - Subcategory 3</option>
+					</select>
+				</div>
+
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Name</label>
+					<input type="text" class="form-control" id="exampleFormControlInput1"
+						placeholder="Name...">
+				</div>
+				<div class="mb-3">
+					<label for="exampleFormControlTextarea1" class="form-label">Description</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description..."></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Price</label>
+					<input type="number" class="form-control" id="exampleFormControlInput1" placeholder="123,4565...">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"
+					(click)="fnModal('hide')">Close</button>
+				<button type="button" class="btn btn-primary" (click)="fnModal('hide')">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>

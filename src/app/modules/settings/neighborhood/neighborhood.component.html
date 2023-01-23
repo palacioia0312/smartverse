@@ -1,0 +1,101 @@
+<div class="row">
+	<div class="col-sm-4">
+		<a [routerLink]="['.']" class="btn btn-purple rounded-pill w-md waves-effect waves-light mb-3"
+			(click)="fnModal('show')"><i class="mdi mdi-plus"></i>
+			Create House</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xl-12">
+		<div class="card">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="table-responsive t-height">
+						<table class="table table-bordered table-striped">
+							<thead class="table-dark">
+								<tr>
+									<th>Id</th>
+									<th>Neighbornhood Tag</th>
+									<th>Title</th>
+									<th>Description</th>
+									<th>Population</th>
+									<th>Availability</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let item of items">
+									<td>{{item.id}}</td>
+									<td>{{item.neighbornhoodTag}}</td>
+									<td>{{item.title}}</td>
+									<td>{{item.description}}</td>
+									<td>{{item.population}}</td>
+									<td>{{item.availability}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id="modalNeighborhood" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Neighborhoods modal</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fnModal('hide')">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Neighbornhood Tag</label>
+					<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Neighbornhood Tag">
+				</div>
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Title</label>
+					<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+				</div>
+				<div class="mb-3">
+					<label for="exampleFormControlTextarea1" class="form-label">Description</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description..."
+						rows="3"></textarea>
+				</div>
+
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Population</label>
+					<select class="form-select" aria-label="Default select example">
+						<option selected disabled>Select a option</option>
+						<option value="1">1 - Option 1</option>
+						<option value="2">2 - Option 2</option>
+						<option value="3">3 - Option 3</option>
+						<option value="4">4 - Option 4</option>
+						<option value="5">5 - Option 5</option>
+					</select>
+				</div>
+
+				<div class="mb-3">
+					<label for="exampleFormControlInput1" class="form-label">Availability</label>
+					<select class="form-select" aria-label="Default select example">
+						<option selected disabled>Select a option</option>
+						<option value="1">1 - Option 1</option>
+						<option value="2">2 - Option 2</option>
+						<option value="3">3 - Option 3</option>
+						<option value="4">4 - Option 4</option>
+						<option value="5">5 - Option 5</option>
+					</select>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"
+					(click)="fnModal('hide')">Close</button>
+				<button type="button" class="btn btn-primary" (click)="fnModal('hide')">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
