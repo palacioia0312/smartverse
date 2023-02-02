@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit(): void {
 		// get return url from route parameters or default to '/'
-		this.returnUrl =
-			this.route.snapshot.queryParams['returnUrl'] || this.returnUrl;
-		// this.prueba();
+		// this.returnUrl =
+		// 	this.route.snapshot.queryParams['returnUrl'] || this.returnUrl;
+		this.prueba();
 	}
 
 	/**
@@ -71,11 +71,11 @@ export class LoginComponent implements OnInit {
 			'https://dpv7ueckjb72i5js34zrx7ggym0xwweg.lambda-url.us-east-1.on.aws/',
 			{
 				method: 'POST',
-				body: JSON.stringify({
-					username: 'Gareth Mc Cumskey',
-					email: 'kevin@gmail.com',
-					password: '123asd456',
-				}),
+				body: JSON.stringify({"body":{
+  "username": "Gareth Mc Cumskey",
+  "email": "kevin@gmail.com",
+  "password": "123asd456"}
+}),
 				headers: {
 					Accept: '*/*',
 					'Content-Type': 'application/json',
