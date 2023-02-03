@@ -30,7 +30,7 @@
 					</a>
 
 					<!-- item-->
-					<a [routerLink]="['/auth/logout']" class="notify-item" ngbDropdownItem>
+					<a (click)="fnLogout()" class="notify-item" ngbDropdownItem>
 						<i class="fe-log-out me-1"></i>
 						<span>Logout</span>
 					</a>

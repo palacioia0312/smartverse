@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
-import { ErrorInterceptor } from './helpers/error.interceptor';
-import { FakeBackendProvider } from './helpers/fake-backend';
-import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './intercepters/error.interceptor';
+import { FakeBackendProvider } from './intercepters/fake-backend';
+import { JwtInterceptor } from './intercepters/jwt.interceptor';
 
 @NgModule({
 	declarations: [],

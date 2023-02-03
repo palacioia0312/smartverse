@@ -2,13 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-// utility
-import { loggedInUser } from '../helpers/utils';
-
 // types
 import { User } from '../models/auth.models';
-import { StorageService } from '../helpers/storage.service';
+import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -32,7 +28,7 @@ export class AuthenticationService {
 	 * @param password password of user
 	 */
 	login(email: string, password: string): Observable<User> {
-		return this.http.post<User>(`/api/login`, { email, password }).pipe(
+		return this.http.post<User>(`/api/login`, { email, password }, { headers: { 'Authorization': 'xnsianx'}}).pipe(
 			map((user) => {
 				// login successful if there's a jwt token in the response
 				if (user && user.token) {

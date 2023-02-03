@@ -137,7 +137,10 @@
 							<span style="cursor: pointer;" [routerLink]="option.redirectTo">{{option.label}}</span>
 						</a>
 					</ng-container>
-
+					<a class="notify-item" ngbDropdownItem (click)="fnLogout()">
+						<i class="fe-log-out"></i>
+						<span style="cursor: pointer;">Logout</span>
+					</a>
 				</div>
 			</li>
 

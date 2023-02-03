@@ -56,11 +56,11 @@ const PROFILEOPTIONS: ProfileOptionItem[] = [
 		icon: 'fe-lock',
 		redirectTo: '/auth/lock-screen',
 	},
-	{
-		label: 'Logout',
-		icon: 'fe-log-out',
-		redirectTo: '/auth/logout',
-	},
+	// {
+	// 	label: 'Logout',
+	// 	icon: 'fe-log-out',
+	// 	redirectTo: '/auth/logout',
+	// },
 ];
 
 export { NOTIFICATIONS, PROFILEOPTIONS };

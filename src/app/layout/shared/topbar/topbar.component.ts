@@ -122,4 +122,8 @@ export class TopbarComponent implements OnInit {
 		event.preventDefault();
 		this.mobileMenuButtonClicked.emit();
 	}
+
+	fnLogout(): void {
+		this.authService.logout();
+	}
 }

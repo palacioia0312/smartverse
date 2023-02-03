@@ -144,4 +144,8 @@ export class LeftSidebarComponent implements OnInit {
 	hideMenu() {
 		document.body.classList.remove('sidebar-enable');
 	}
+
+	fnLogout(): void {
+		this.authService.logout();
+	}
 }

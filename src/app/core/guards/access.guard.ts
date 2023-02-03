@@ -7,25 +7,28 @@ import {
 	UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { verifyJWT, createJWT } from '../utils/handleToken';
-
+import { StorageService } from '../service/storage.service';
+import { hasExpired } from '../helpers/handleToken';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AccessGuard implements CanActivate {
-	constructor(private router: Router) {}
-	canActivate(
+	constructor(private router: Router, private _storage: StorageService) {}
+	async canActivate(
 		route: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
-	):
-		| Observable<boolean | UrlTree>
-		| Promise<boolean | UrlTree>
-		| boolean
-		| UrlTree {
-			// createJWT();
-			verifyJWT().then((response) => console.log(response));
+	) {
+		const token = hasExpired(this._storage.getToken());
 
-		return true;
+		if (!token) return true;
+
+		this._storage.clearStorage();
+
+		this.router.navigate(['auth/login'], {
+			queryParams: { returnUrl: state.url },
+		});
+
+		return false;
 	}
 }
