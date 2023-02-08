@@ -25,6 +25,11 @@ const routes: Routes = [
 			import('./../../modules/settings/neighborhood/nightborhood.module').then((m) => m.NeighborhoodModule),
 	},
 	{
+		path: 'settings/marketplace',
+		loadChildren: () =>
+			import('./../../modules/settings/marketplace/marketplace.module').then((m) => m.MarketPlaceModule),
+	},
+	{
 		path: 'security/user',
 		loadChildren: () =>
 			import('./../../modules/security/user/user.module').then((m) => m.UserModule),

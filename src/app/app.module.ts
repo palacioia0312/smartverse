@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { JoyrideModule } from 'ngx-joyride';
+import { MarketplaceComponent } from './modules/settings/marketplace/marketplace.component';
 
 @NgModule({
 	declarations: [AppComponent],

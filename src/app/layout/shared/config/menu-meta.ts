@@ -40,6 +40,12 @@ const MENU_ITEMS: MenuItem[] = [
 				url: '/settings/neighborhood',
 				parentKey: 'settings',
 			},
+			{
+				key: 'settings-marketplace',
+				label: 'Marketplace',
+				url: '/settings/marketplace',
+				parentKey: 'settings',
+			},
 		],
 	},
 	{
