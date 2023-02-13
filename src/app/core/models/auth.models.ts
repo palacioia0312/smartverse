@@ -9,5 +9,6 @@ export class User {
 	email?: string;
 	avatar?: string;
 	location?: string;
+	ocupation?: string;
 	title?: string;
 }

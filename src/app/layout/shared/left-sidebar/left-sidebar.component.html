@@ -8,7 +8,7 @@
 
 			<div ngbDropdown>
 				<a href="javascript: void(0);" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" id="profileMenu"
-					ngbDropdownToggle>Kevin Hernandez</a>
+					ngbDropdownToggle>{{loggedInUser?.name}}</a>
 				<div class="user-pro-dropdown" ngbDropdownMenu aria-labelledby="profileMenu">
 
 					<!-- item-->
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 
-			<p class="text-muted left-user-info">Unity developer</p>
+			<p class="text-muted left-user-info">{{loggedInUser?.ocupation}}</p>
 
 			<!-- <ul class="list-inline">
 				<li class="list-inline-item">

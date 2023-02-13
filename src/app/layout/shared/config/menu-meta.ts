@@ -49,6 +49,26 @@ const MENU_ITEMS: MenuItem[] = [
 		],
 	},
 	{
+		label: 'Marketplace',
+		isTitle: true,
+		collapsed: false,
+	},
+	{
+		key: 'marketplace',
+		label: 'Marketplace',
+		isTitle: false,
+		icon: 'mdi mdi-shopping',
+		collapsed: true,
+		children: [
+			{
+				key: 'marketplace-itemsmarket',
+				label: 'Items',
+				url: '/marketplace/items',
+				parentKey: 'marketplace',
+			}
+		],
+	},
+	{
 		label: 'Security',
 		isTitle: true,
 		collapsed: false,

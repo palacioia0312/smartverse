@@ -5,7 +5,6 @@ import { first } from 'rxjs';
 // service
 import { AuthenticationService } from 'src/app/core/service/auth.service';
 // types
-import { User } from 'src/app/core/models/auth.models';
 
 @Component({
 	selector: 'app-auth-login',
@@ -14,8 +13,8 @@ import { User } from 'src/app/core/models/auth.models';
 })
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup = this.fb.group({
-		email: ['', [Validators.required, Validators.email]],
-		password: ['', Validators.required],
+		email: ['admin@habytat.io', [Validators.required, Validators.email]],
+		password: ['be5a2ccefa0e957b87b9496e28552375', Validators.required],
 	});
 	formSubmitted: boolean = false;
 	error: string = '';
@@ -30,22 +29,14 @@ export class LoginComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		// get return url from route parameters or default to '/'
 		this.returnUrl =
-			this.route.snapshot.queryParams['returnUrl'] || this.returnUrl;
-		// this.prueba();
+		this.route.snapshot.queryParams['returnUrl'] || this.returnUrl;
 	}
 
-	/**
-	 * convenience getter for easy access to form fields
-	 */
 	get formValues() {
 		return this.loginForm.controls;
 	}
 
-	/**
-	 * On submit form
-	 */
 	onSubmit(): void {
 		this.formSubmitted = true;
 		if (this.loginForm.valid) {
@@ -55,7 +46,9 @@ export class LoginComponent implements OnInit {
 				.login(email, password)
 				.pipe(first())
 				.subscribe(
-					(data: User) => {
+					(data: any) => {
+						this.loading = false;
+						console.log(data);
 						this.router.navigate([this.returnUrl]);
 					},
 					(error: string) => {
@@ -67,29 +60,21 @@ export class LoginComponent implements OnInit {
 	}
 
 	async prueba() {
-		return await fetch(
-			'https://dpv7ueckjb72i5js34zrx7ggym0xwweg.lambda-url.us-east-1.on.aws/',
-			{
-				method: 'POST',
-				body: JSON.stringify({"body":{
-  "username": "Gareth Mc Cumskey",
-  "email": "kevin@gmail.com",
-  "password": "123asd456"}
-}),
-				headers: {
-					Accept: '*/*',
-					'Content-Type': 'application/json',
-				},
-			}
-		).then((response) => response.json());
+		var myHeaders = new Headers();
+			myHeaders.append("Content-Type", "text/plain");
+
+		fetch("https://j53tlbaeb1.execute-api.us-east-1.amazonaws.com/v0/auth/login",{
+			method: 'POST',
+			headers: myHeaders,
+			body: JSON.stringify({
+				"username": "",
+				"email": "admin@habytat.io",
+				"password": "be5a2ccefa0e957b87b9496e28552375"
+			}),
+			redirect: 'follow'
+		})
+		.then(response => response.json())
+		.then(result => console.log(result))
+		.catch(error => console.log('error', error));
 	}
 }
-
-// const info = {
-//   code: "OK",
-//   message: "Consulta ejecutada correctamente.",
-//   data: {'isActive': true, 'isBlocked': false, 'role': 'ADMIN', 'profile': 'Unity Developer', 'id': 'kevin@gmail.com', 'name': 'Kevin Hernandez', 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJJdGVtIjp7ImlzQWN0aXZlIjp0cnVlLCJpc0Jsb2NrZWQiOmZhbHNlLCJwYXNzd29yZCI6IjEyM2FzZDQ1NiIsInJvbGUiOiJBRE1JTiIsInByb2ZpbGUiOiJVbml0eSBEZXZlbG9wZXIiLCJpZCI6ImtldmluQGdtYWlsLmNvbSIsIm5hbWUiOiJLZXZpbiBIZXJuYW5kZXoifSwiUmVzcG9uc2VNZXRhZGF0YSI6eyJSZXF1ZXN0SWQiOiI3QUFSNjJGTDdBOEIyREs1SzY4UVFOUjQ1SlZWNEtRTlNPNUFFTVZKRjY2UTlBU1VBQUpHIiwiSFRUUFN0YXR1c0NvZGUiOjIwMCwiSFRUUEhlYWRlcnMiOnsic2VydmVyIjoiU2VydmVyIiwiZGF0ZSI6IlRodSwgMDUgSmFuIDIwMjMgMTI6MjI6NTAgR01UIiwiY29udGVudC10eXBlIjoiYXBwbGljYXRpb24veC1hbXotanNvbi0xLjAiLCJjb250ZW50LWxlbmd0aCI6IjIwNiIsImNvbm5lY3Rpb24iOiJrZWVwLWFsaXZlIiwieC1hbXpuLXJlcXVlc3RpZCI6IjdBQVI2MkZMN0E4QjJESzVLNjhRUU5SNDVKVlY0S1FOU081QUVNVkpGNjZROUFTVUFBSkciLCJ4LWFtei1jcmMzMiI6IjI0MDIxODA2MjcifSwiUmV0cnlBdHRlbXB0cyI6MH0sIkVYUElSQVRJT05fVElNRSI6IjFIIiwiVE9LRU5fSVNTIjoiaGFieXRhdC1kZXYiLCJUT0tFTl9BVUQiOiJoYWJ5dGF0LW1hbmFnZW1lbnQifQ.y8BjF6gpNB2yAZkQTcBiURvbnIK5zKkRiQArHE9N15A'}
-// }
-// sessionStorage.setItem('currentUser', JSON.stringify(info.data));
-// console.log(info.data);
-// this.router.navigate([this.returnUrl]);

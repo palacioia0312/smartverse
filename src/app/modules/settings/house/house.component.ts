@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventType } from 'src/app/core/constants/events';
 import { EventService } from 'src/app/core/service/event.service';
+import { HttpService } from 'src/app/core/service/http.service';
 
 declare var $: any;
 
@@ -31,7 +32,7 @@ export class HouseComponent implements OnInit {
 		},
 	];
 	items: any = [];
-	constructor(private eventService: EventService) {}
+	constructor(private eventService: EventService, private _http:HttpService) {}
 
 	ngOnInit(): void {
 		this.eventService.broadcast(EventType.CHANGE_PAGE_TITLE, {
@@ -45,15 +46,9 @@ export class HouseComponent implements OnInit {
 	}
 
 	_fetchData() {
-		// fetch("https://li49rtqc28.execute-api.us-east-1.amazonaws.com/v1/items",{
-		// 	method: 'GET',
-		// 	redirect: 'follow'
-		// })
-		// .then(response => response.text())
-		// .then(result => console.log(result))
-		// .catch(error => console.log('error', error));
-		this.items = this.info;
-		console.table(this.items);
+		 this._http.get('/config/house',true).subscribe((res:any)=>{
+			console.log(res);
+		 })
 	}
 
 	fnModal(action: string): void {

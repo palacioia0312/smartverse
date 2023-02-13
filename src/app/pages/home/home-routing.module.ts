@@ -20,6 +20,11 @@ const routes: Routes = [
 			import('./../../modules/settings/house/house.module').then((m) => m.HouseModule),
 	},
 	{
+		path: 'marketplace/items',
+		loadChildren: () =>
+			import('./../../modules/marketplace/itemsmarket/itemsmarket.module').then((m) => m.ItemsmarketModule),
+	},
+	{
 		path: 'settings/neighborhood',
 		loadChildren: () =>
 			import('./../../modules/settings/neighborhood/nightborhood.module').then((m) => m.NeighborhoodModule),
