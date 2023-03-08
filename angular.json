@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "adminto-angular": {
+    "habytat-web-tool": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -29,7 +29,7 @@
           "options": {
             "localize": false,
             "aot": true,
-            "outputPath": "dist/adminto-angular",
+            "outputPath": "dist/habytat-web-tool",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -91,16 +91,16 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "adminto-angular:build:production"
+              "browserTarget": "habytat-web-tool:build:production"
             },
             "development": {
-              "browserTarget": "adminto-angular:build:development"
+              "browserTarget": "habytat-web-tool:build:development"
             },
             "es": {
-              "browserTarget": "adminto-angular:build:es"
+              "browserTarget": "habytat-web-tool:build:es"
             },
             "en": {
-              "browserTarget": "adminto-angular:build:en"
+              "browserTarget": "habytat-web-tool:build:en"
             }
           },
           "defaultConfiguration": "development"
@@ -108,7 +108,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "adminto-angular:build"
+            "browserTarget": "habytat-web-tool:build"
           }
         },
         "test": {
@@ -132,7 +132,7 @@
       }
     }
   },
-  "defaultProject": "adminto-angular",
+  "defaultProject": "habytat-web-tool",
   "cli": {
     "analytics": false
   }

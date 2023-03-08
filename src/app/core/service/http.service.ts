@@ -5,35 +5,58 @@ import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class HttpService {
+	constructor(private http: HttpClient, private _storage: StorageService) {}
 
-  constructor(private http: HttpClient, private _storage: StorageService) {}
-
-
-   post(query: string, data: any) {
+	post(query: string, data: any) {
 		const headers = new HttpHeaders({
-			'Authorization': `Bearer ${this._storage.getToken()}`,
-			'Content-Type': 'application/json; charset=utf-8'
+			Authorization: `Bearer ${this._storage.getToken()}`,
+			'Content-Type': 'application/json; charset=utf-8',
 		});
-		return this.http.post(`${environment.server}${query}`, headers, data).pipe(map((res:any)=> res.data));
+		return this.http
+			.post(`${environment.server}${query}`, data, { headers })
+			.pipe(map((res: any) => res.data));
 	}
 
-	get(query:string,sendHeaders:boolean){
+	get(query: string, sendHeaders: boolean) {
 		const URL = environment.server + query;
 		const headers = new HttpHeaders({
-			'Authorization': `Bearer ${this._storage.getToken()}`,
-			'Content-Type': 'application/json; charset=utf-8'
+			Authorization: `Bearer ${this._storage.getToken()}`,
+			'Content-Type': 'application/json; charset=utf-8',
 		});
-		return this.http.get(URL, { headers }).pipe(map((res:any)=> res.data));
-	  }
-	options(query:string,sendHeaders:boolean){
+		return this.http
+			.get(URL, { headers })
+			.pipe(map((res: any) => res.data));
+	}
+
+	put(query: string, data: any) {
+		const headers = new HttpHeaders({
+			Authorization: `Bearer ${this._storage.getToken()}`,
+			'Content-Type': 'application/json; charset=utf-8',
+		});
+		return this.http
+			.put(`${environment.server}${query}`, data, { headers })
+			.pipe(map((res: any) => res.data));
+	}
+
+	patch(query: string, data: any) {
+		const headers = new HttpHeaders({
+			Authorization: `Bearer ${this._storage.getToken()}`,
+			'Content-Type': 'application/json; charset=utf-8',
+		});
+		return this.http
+			.patch(`${environment.server}${query}`, data, { headers })
+			.pipe(map((res: any) => res.data));
+	}
+
+	options(query: string, sendHeaders: boolean) {
 		const URL = environment.server + query;
 		const headers = new HttpHeaders({
-			'Authorization': `Bearer ${this._storage.getToken()}`,
-			'Content-Type': 'application/json; charset=utf-8'
+			Authorization: `Bearer ${this._storage.getToken()}`,
+			'Content-Type': 'application/json; charset=utf-8',
 		});
-		return this.http.options(URL, { headers }).pipe(map((res:any)=> res));
-	  }
+		return this.http.options(URL, { headers }).pipe(map((res: any) => res));
+	}
 }

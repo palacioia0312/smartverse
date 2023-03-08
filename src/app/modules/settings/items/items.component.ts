@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventType } from 'src/app/core/constants/events';
 import { EventService } from 'src/app/core/service/event.service';
+import { HttpService } from 'src/app/core/service/http.service';
 
 declare var $: any;
 
@@ -10,7 +11,7 @@ declare var $: any;
 	styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit {
-	items: any = {};
+	items2: any = {};
 	info = [
 		{
 			id: 0,
@@ -35,7 +36,9 @@ export class ItemsComponent implements OnInit {
 			subCategories: 4,
 		},
 	];
-	constructor(private eventService: EventService) {}
+	itemsListBase : any[] = [];
+	items : any[] = [];
+	constructor(private eventService: EventService, private _http:HttpService) {}
 
 	ngOnInit(): void {
 		this.eventService.broadcast(EventType.CHANGE_PAGE_TITLE, {
@@ -45,20 +48,15 @@ export class ItemsComponent implements OnInit {
 				{ label: 'Settings/Items', path: '.', active: true },
 			],
 		});
-		this._fetchData();
+		this.listItems();
 	}
 
-	_fetchData() {
-		// fetch("https://li49rtqc28.execute-api.us-east-1.amazonaws.com/v1/items",{
-		// 	method: 'GET',
-		// 	redirect: 'follow'
-		// })
-		// .then(response => response.text())
-		// .then(result => console.log(result))
-		// .catch(error => console.log('error', error));
-		this.items = this.info;
-		console.table(this.items);
-	}
+	listItems = ()=> {
+		this._http.get('/config/items',true).subscribe((res: any)=>{
+		   this.itemsListBase = res.result;
+		   this.items = this.itemsListBase;
+		})
+    }
 
 	fnModal(action: string): void {
 		$('#modalItems').modal(action);

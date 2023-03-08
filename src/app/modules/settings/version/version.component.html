@@ -1,0 +1,158 @@
+<div class="row">
+	<div class="col-xl-3">
+		<div class="col-sm-12 mb-3 text-center">
+				<button type="button" (click)="fnModal('show', 'New')" class="btn btn-success w-75 rounded-pill waves-effect waves-light">
+					Add Version
+					<span class="btn-label-right"><i class="mdi mdi-plus"></i></span>
+				</button>
+		</div>
+		<div class="col-md-12 text-center">
+			<h5 class="text-secondary" style="font-family: math;">Current versions for platforms</h5>
+			<hr>
+		</div>
+		<div class="col-md-12">
+			<div *ngFor="let current of currentVersion">
+				<div  class="card bg-dark">
+					<div  class="card-body widget-user p-2">
+						<div  class="d-flex align-items-center">
+							<div  class="avatar-lg me-3 pt-2 text-center flex-shrink-0 avatar-group">
+								<img  alt="user" class="img-fluid w-75" src="assets/images/icons/{{current.platform}}.png">
+							</div>
+							<div  class="flex-grow-1 overflow-hidden">
+								<h5  class="mt-0 mb-1 text-white">{{current.platform}}</h5>
+								<p  class="mb-2 mb-auto font-13 text-white">Version: <span><b>{{current.version}}</b></span></p>
+								<span class="badge bg-warning text-dark me-1">N° Compilation: {{current.compilation}} </span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-9">
+		<div class="card">
+			<div class="row">
+				<div class="col-md-12 m-2">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3">
+								<select class="form-control form-select" name="platform" (change)="filter(platform)" [(ngModel)]="platform">
+									<option selected value="">Filter a platform</option>
+									<option *ngFor="let item of plaformArray" value="{{item}}">{{item}}</option>
+								</select>
+							</div>
+							<div class="col-md-4" style="position: absolute; right: -13px;">
+								<form class="app-search">
+									<div class="app-search-box">
+										<div class="input-group">
+											<input type="text" class="form-control" name="filter" [(ngModel)]="filtertext" (keydown)="filter(filtertext)" placeholder="Search..." id="search-dropdown">
+											<button class="btn input-group-text btn-search" type="submit">
+												<i class="fe-search"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="card-body">
+						<div class="table-responsive t-height scrollspy-example mb-4">
+							<table class="table table-bordered table-striped">
+								<thead class="table-dark">
+									<tr>
+										<th></th>
+										<th>Platform</th>
+										<th>Version</th>
+										<th class="text-center">Compilation</th>
+										<th class="text-center">Required</th>
+										<th class="text-center">Status</th>
+										<th class="text-center">Published</th>
+										<th class="text-center">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let item of versionList | paginate: { itemsPerPage: 7, currentPage: p }">
+										<td class="text-center">
+											<img width="30" src="assets/images/icons/{{item.platform}}.png"	alt="platform">
+										</td>
+										<td>{{item.platform}}</td>
+										<td>{{item.version}}</td>
+										<td class="text-center">{{item.compilation}}</td>
+										<td class="text-center">
+											<span *ngIf="item.isRequired == true" class="mdi mdi-check-bold md-36 text-success"></span>
+											<span *ngIf="item.isRequired == false" class="mdi mdi-close-thick md-36 text-secondary"></span>
+										</td>
+										<td class="text-center">
+											<span *ngIf="item.isActive == true" class="mdi mdi-check-bold md-36 text-success"></span>
+											<span *ngIf="item.isActive== false" class="mdi mdi-close-thick md-36 text-secondary"></span>
+										</td>
+										<td class="text-center">{{item.publishedAt*1000 | date}}</td>
+										<td class="text-center">
+											<div class="button-list justify-content-around d-flex">
+													<i class="mdi mdi-traffic-light text-success ml-2 size-25 pointer" (click)="changeStatus(item.version, item.platform)"></i>
+												<i class="mdi mdi-pencil text-warning size-25 pointer" placement="top" ngbtooltip="Update"  (click)="fnModal('show', 'Update', item)"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5 mt-1 pos-right">
+					<pagination-controls (pageChange)="p = $event"></pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalMarketPlace" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="exampleModalLabel">{{actionModal}} Version</h3>
+				<i class="mdi mdi-close-thick size-25" (click)="fnModal('hide', 'New')"></i>
+			</div>
+			<div class="modal-body">
+				<div class="row" [hidden]="actionModal==='Update'">
+					<div class="col-md-6 mb-3">
+						<label for="exampleFormControlInput1" class="form-label">Platform</label>
+						<select class="form-select" name="platform" [(ngModel)]="versionData.platform">
+							<option selected value="">Select a platform</option>
+							<option *ngFor="let item of plaformArray" value="{{item}}">{{item}}</option>
+						</select>
+					</div>
+					<div class="col-md-6 mb-3">
+						<label for="exampleFormControlInput1" class="form-label">Version</label>
+						<input type="text" class="form-control" name="version" [(ngModel)]="versionData.version" placeholder="Format: 0.0.1">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 mb-3">
+						<label for="exampleFormControlTextarea1" class="form-label">Compilation Number</label>
+						<input type="number" class="form-control" placeholder="N° of compilation" name="compilation" [(ngModel)]="versionData.compilation"/>
+					</div>
+					<div class="col-md-4 mb-3">
+						<label for="exampleFormControlTextarea1" class="form-label">publish Date</label>
+						<input type="date" class="form-control" name="published" [(ngModel)]="versionData.publishedAt"/>
+					</div>
+					<div class="col-md-4 mb-3 mt-4">
+						<div class="form-check">
+							<label for="customCheck1" class="form-check-label">This version is required?</label>
+							<input type="checkbox" id="customCheck1" name="customCheck1" [(ngModel)]="versionData.isRequired" class="form-check-input">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"
+					(click)="fnModal('hide', 'New')">Close</button>
+				<button type="button" class="btn btn-success" (click)="actionModal==='Update'?updateVersion():createVersion()">{{actionModal==='Update'?'Update':'Create'}} version</button>
+			</div>
+		</div>
+	</div>
+</div>

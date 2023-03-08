@@ -29,16 +29,18 @@ export class AuthenticationService {
 	 * @param password password of user
 	 */
 	login(email: string, password: string) {
-		return this.http.post(`${environment.server}/auth/login`, { email, password }, {}).pipe(
-			map((res:any) => {
-				if (res && res.data) {
-					// store user details and jwt in session
-					this._storage.saveToken(res.data);
-					//sessionStorage.setItem('currentUser', JSON.stringify(res));
-				}
-				return res;
-			})
-		);
+		return this.http
+			.post(`${environment.server}/auth/login`, { email, password }, {})
+			.pipe(
+				map((res: any) => {
+					if (res && res.data) {
+						// store user details and jwt in session
+						this._storage.saveToken(res.data);
+						//sessionStorage.setItem('currentUser', JSON.stringify(res));
+					}
+					return res;
+				})
+			);
 	}
 
 	/**
@@ -52,6 +54,7 @@ export class AuthenticationService {
 			.post<User>(`/api/signup`, { name, email, password })
 			.pipe(map((user) => user));
 	}
+
 
 	/**
 	 * Logout the user

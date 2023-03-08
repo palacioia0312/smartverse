@@ -5,9 +5,10 @@ import { Title } from '@angular/platform-browser';
 import { ErrorInterceptor } from './intercepters/error.interceptor';
 import { FakeBackendProvider } from './intercepters/fake-backend';
 import { JwtInterceptor } from './intercepters/jwt.interceptor';
+import { LimitToPipe } from './pipes/limit-to.pipe';
 
 @NgModule({
-	declarations: [],
+	declarations: [LimitToPipe],
 	imports: [CommonModule],
 	providers: [
 		Title,

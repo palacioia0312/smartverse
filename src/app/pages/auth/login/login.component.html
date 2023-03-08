@@ -5,9 +5,7 @@
 
   <form name="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <app-ui-preloader [display]="loading"></app-ui-preloader>
-    <ngb-alert [dismissible]="false" type="danger" *ngIf="error">
-      {{ error }}
-    </ngb-alert>
+
     <div class="mb-3 text-white my-5">
       <label for="emailaddress" class="form-label" i18n>Email address</label>
       <input class="form-control" type="email" id="emailaddress" required i18n-placeholder
@@ -39,6 +37,17 @@
 
       </div>
     </div>
+
+	<ngb-alert [dismissible]="false" type="danger" *ngIf="error" class="bg-danger">
+		<div class="d-flex justify-content-between">
+			<span class="text-white">
+				{{ error }}
+			</span>
+			<button type="button" class="btn btn-sm text-white" (click)="fnCloseAlert()">
+				<i class="mdi mdi-close"></i>
+			</button>
+		</div>
+	  </ngb-alert>
 
     <div class="mb-3">
       <div class="form-check text-white">

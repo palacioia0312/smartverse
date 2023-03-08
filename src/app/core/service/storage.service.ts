@@ -33,7 +33,7 @@ export class StorageService {
 	}
 
 	public saveUser(info: any): void {
-		const user = jwtDecode(info)
+		const user = jwtDecode(info);
 		window.sessionStorage.removeItem(USER_KEY);
 		window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
 	}

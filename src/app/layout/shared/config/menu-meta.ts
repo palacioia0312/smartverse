@@ -41,15 +41,43 @@ const MENU_ITEMS: MenuItem[] = [
 				parentKey: 'settings',
 			},
 			{
-				key: 'settings-marketplace',
-				label: 'Marketplace',
-				url: '/settings/marketplace',
+				key: 'settings-version',
+				label: 'Version',
+				url: '/settings/version',
 				parentKey: 'settings',
 			},
 		],
 	},
 	{
-		label: 'Marketplace',
+		label: 'Comunication',
+		isTitle: true,
+		collapsed: false,
+	},
+	{
+		key: 'comunication',
+		label: 'News',
+		isTitle: false,
+		icon: 'mdi mdi-newspaper-variant',
+		url: '/comunication/news',
+		collapsed: false,
+	},
+	{
+		key: 'comunication',
+		label: 'Notification',
+		isTitle: false,
+		icon: 'mdi mdi-notification-clear-all',
+		collapsed: true,
+		children: [
+			{
+				key: 'comunication-notify',
+				label: 'Notify',
+				url: '/comunication/notify',
+				parentKey: 'comunication',
+			}
+		],
+	},
+	{
+		label: 'Game',
 		isTitle: true,
 		collapsed: false,
 	},

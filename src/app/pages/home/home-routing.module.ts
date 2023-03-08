@@ -4,10 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 	{
 		path: 'dashboard',
-		loadChildren: () =>
-			import('./../../modules/dashboards/dashboards.module').then(
-				(m) => m.DashboardsModule
-			),
+		loadChildren: () => import('./../../modules/dashboards/dashboards.module').then((m) => m.DashboardsModule),
 	},
 	{
 		path: 'settings/item',
@@ -25,14 +22,24 @@ const routes: Routes = [
 			import('./../../modules/marketplace/itemsmarket/itemsmarket.module').then((m) => m.ItemsmarketModule),
 	},
 	{
+		path: 'comunication/news',
+		loadChildren: () =>
+			import('./../../modules/comunications/news/news.module').then((m) => m.NewsModule),
+	},
+	{
+		path: 'comunication/notify',
+		loadChildren: () =>
+			import('./../../modules/comunications/notification-topic/notification-topic.module').then((m) => m.NotificationTopicModule),
+	},
+	{
 		path: 'settings/neighborhood',
 		loadChildren: () =>
 			import('./../../modules/settings/neighborhood/nightborhood.module').then((m) => m.NeighborhoodModule),
 	},
 	{
-		path: 'settings/marketplace',
+		path: 'settings/version',
 		loadChildren: () =>
-			import('./../../modules/settings/marketplace/marketplace.module').then((m) => m.MarketPlaceModule),
+			import('./../../modules/settings/version/version.module').then((m) => m.VersionModule),
 	},
 	{
 		path: 'security/user',

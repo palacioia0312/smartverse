@@ -1,0 +1,166 @@
+<div class="row">
+	<div class="col-sm-3 mb-3">
+			<button type="button" (click)="fnModal('show', 'Add')" class="btn btn-success w-75 rounded-pill waves-effect waves-light">
+				Add News
+				<span class="btn-label-right"><i class="mdi mdi-plus"></i></span>
+			</button>
+	</div>
+	<div class="col-xl-12">
+		<div class="card">
+			<div class="row">
+				<div class="col-md-12 m-2 mb-2">
+					<div class="container">
+						<div class="row">
+							<!-- <div class="col-md-3">
+								<select class="form-control form-select" name="platform" (change)="filter(platform)" [(ngModel)]="platform">
+									<option selected value="">Filter a platform</option>
+									<option *ngFor="let item of plaformArray" value="{{item}}">{{item}}</option>
+								</select>
+							</div> -->
+							<div class="col-md-4" style="position: absolute; right: -13px;">
+								<form class="app-search">
+									<div class="app-search-box">
+										<div class="input-group">
+											<input type="text" class="form-control" name="filter" [(ngModel)]="filtertext" (keydown)="filter(filtertext)" placeholder="Search..." id="search-dropdown">
+											<button class="btn input-group-text btn-search" type="submit">
+												<i class="fe-search"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="card-body">
+						<div class="table-responsive t-height scrollspy-example mb-4 mt-2">
+							<table class="table table-bordered table-striped">
+								<thead class="table-dark">
+									<tr>
+										<th>Tittle</th>
+										<th>Summary</th>
+										<th class="text-center">Website</th>
+										<th class="text-center">Tags</th>
+										<th class="text-center">Status</th>
+										<th class="text-center">Date</th>
+										<th class="text-center">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let item of newsList | paginate: { itemsPerPage: 6, currentPage: p }">
+										<td>{{limitTo(item.tittle, 20)}}</td>
+										<td>{{limitTo(item.summary, 30)}}</td>
+										<td class="text-center">
+											<a href="{{item.externalLink}}" target="_blank">
+												<i class="mdi mdi-web"></i>
+											</a>
+										</td>
+										<td>
+											<label class="badge bg-primary mr-2" *ngFor="let tag of item.tags">{{tag}}</label>
+										</td>
+										<td class="text-center">
+											<span *ngIf="item.enabled == true" class="mdi mdi-check-bold md-36 text-success"></span>
+											<span *ngIf="item.enabled== false" class="mdi mdi-close-thick md-36 text-secondary"></span>
+										</td>
+										<td class="text-center">{{item.publicationDate | date}}</td>
+										<td class="text-center">
+											<div class="button-list justify-content-around d-flex">
+												<!-- <i class="mdi mdi-traffic-light text-success ml-2 size-25 pointer" (click)="changeStatus(item.version, item.platform)"></i> -->
+												<i class="mdi mdi-pencil text-warning size-25 pointer" placement="top" ngbtooltip="Update"  (click)="fnModal('show', 'Update', item)"></i>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5 mt-1 pos-right">
+					<pagination-controls (pageChange)="p = $event"></pagination-controls>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalNews" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="exampleModalLabel">{{actionModal}} News</h3>
+				<i class="mdi mdi-close-thick size-25" (click)="fnModal('hide', 'New')"></i>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="col-md-12 mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Tittle</label>
+							<input type="text" class="form-control" name="title" [(ngModel)]="newsData.tittle">
+						</div>
+						<div class="col-md-12 mb-3">
+							<label for="exampleFormControlInput1" class="form-label">External Link</label>
+							<input type="text" class="form-control" name="title" [(ngModel)]="newsData.externalLink">
+						</div>
+						<!-- <div class="col-md-12 mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Img Preview</label>
+							<input type="text" class="form-control" name="title" [(ngModel)]="newsData.previewImage">
+						</div> -->
+						<div class="col-md-12 mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Publication Date</label>
+							<input type="date" class="form-control" name="title" [(ngModel)]="newsData.publicationDate">
+						</div>
+						<div class="col-md-12">
+							<label for="exampleFormControlInput1" class="form-label">Tags</label>
+							<input type="text" class="form-control" name="tags" [(ngModel)]="tag" (keyup.enter)="addTag()" placeholder="enter for add tag">
+							<div class="container m-2">
+								<label class="badge bg-primary mr-2" *ngFor="let tag of newsData.tags">{{tag}}</label>
+							</div>
+						</div>
+						<!-- <div class="col-md-12">
+							<div class="form-check">
+								<label for="customCheck1" class="form-check-label">This news is active?</label>
+								<input type="checkbox" id="customCheck1" name="customCheck1" [(ngModel)]="newsData.enabled" class="form-check-input">
+							</div>
+						</div> -->
+					</div>
+					<div class="col-md-4 br ">
+						<div class="col-md-12 mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Summary</label>
+							<textarea type="textarea" class="form-control" rows="12" autocomplete="off" name="title" [(ngModel)]="newsData.summary"></textarea>
+						</div>
+
+					</div>
+					<div class="col-md-4">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12">
+									<label>News</label>
+									<div class="card card-new mt-1">
+										<i class="mdi mdi-close pos-close"></i>
+										<div class="card-body text-center">
+											<h6><b>{{newsData.tittle}}</b></h6>
+											<p>{{newsData.summary}}</p>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="col-md-12">
+									<div class="col-md-12 mb-3">
+										<label for="exampleFormControlInput1" class="form-label">Details</label>
+										<textarea type="textarea" class="form-control" rows="5" name="title" [(ngModel)]="newsData.details"></textarea>
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"
+					(click)="fnModal('hide', 'New')">Close</button>
+				<button type="button" class="btn btn-success" (click)="actionModal==='Update'?updateNews():createNews()">{{actionModal==='Update'?'Update':'Create'}} news</button>
+			</div>
+		</div>
+	</div>
+</div>

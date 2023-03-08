@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 // service
 import { AuthenticationService } from 'src/app/core/service/auth.service';
+import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
 // types
 
 @Component({
@@ -13,8 +14,8 @@ import { AuthenticationService } from 'src/app/core/service/auth.service';
 })
 export class LoginComponent implements OnInit {
 	loginForm: FormGroup = this.fb.group({
-		email: ['admin@habytat.io', [Validators.required, Validators.email]],
-		password: ['be5a2ccefa0e957b87b9496e28552375', Validators.required],
+		email: ['', [Validators.required]],
+		password: ['', Validators.required],
 	});
 	formSubmitted: boolean = false;
 	error: string = '';
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private authenticationService: AuthenticationService,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private _alert: SweetAlertService,
 	) {}
 
 	ngOnInit(): void {
@@ -48,33 +50,24 @@ export class LoginComponent implements OnInit {
 				.subscribe(
 					(data: any) => {
 						this.loading = false;
-						console.log(data);
+						if (!data.data){
+							// this._alert.notify({ text: data.message, icon: 'error' })
+							this.error = data.message;
+							return;
+						}
 						this.router.navigate([this.returnUrl]);
 					},
 					(error: string) => {
 						this.error = error;
 						this.loading = false;
+						this._alert.notify({ text: error || 'Erro al validar las credenciales', icon: 'error' })
 					}
 				);
 		}
 	}
 
-	async prueba() {
-		var myHeaders = new Headers();
-			myHeaders.append("Content-Type", "text/plain");
 
-		fetch("https://j53tlbaeb1.execute-api.us-east-1.amazonaws.com/v0/auth/login",{
-			method: 'POST',
-			headers: myHeaders,
-			body: JSON.stringify({
-				"username": "",
-				"email": "admin@habytat.io",
-				"password": "be5a2ccefa0e957b87b9496e28552375"
-			}),
-			redirect: 'follow'
-		})
-		.then(response => response.json())
-		.then(result => console.log(result))
-		.catch(error => console.log('error', error));
+	fnCloseAlert(): void {
+		this.error = '';
 	}
 }

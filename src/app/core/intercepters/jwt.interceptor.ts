@@ -18,7 +18,10 @@ const secret = new TextEncoder().encode(
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-	constructor(private _storage:StorageService) {}
+	constructor(
+		private _storage: StorageService,
+		private authenticationService: AuthenticationService
+	) {}
 
 	intercept(
 		request: HttpRequest<any>,
@@ -28,12 +31,20 @@ export class JwtInterceptor implements HttpInterceptor {
 
 		const authHeader = request.headers.get('Authorization');
 
-		return of(null)
-		.pipe(
+		return of(null).pipe(
 			mergeMap(() => {
-				if (!request.url.endsWith('/api/login') && request.method !== 'POST') {
+				if (
+					!request.url.endsWith('/api/login') &&
+					request.method !== 'POST'
+				) {
+					console.log(hasExpired(token));
 					if (authHeader && hasExpired(token)) {
-						return throwError({ status: 401, error: { message: 'JWT Expired' } });
+						this.authenticationService.logout();
+						location.reload();
+						return throwError({
+							status: 401,
+							error: { message: 'JWT Expired' },
+						});
 					}
 				}
 				return next.handle(request);

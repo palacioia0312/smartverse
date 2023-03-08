@@ -1,0 +1,65 @@
+<div class="row">
+	<div class="col-md-4 offset-1">
+		<div class="card bg-dark">
+			<h5 class="card-header">Topic</h5>
+			<div class="card-body">
+				<h5 class="card-title text-white">
+					Special Group users
+				</h5>
+				<div class="col-md-12">
+					<div class="project-members mb-2" *ngFor="let item of objectTopic">
+						<h5 class="float-start text-white me-3">{{item.name}} :</h5>
+						<div class="avatar-group">
+							<a placement="top" class="avatar-group-item" href="/apps/projects">
+								<img alt="friend" class="rounded-circle avatar-sm" src="assets/images/users/user-1.jpg"/>
+							</a>
+							<a placement="top" class="avatar-group-item" href="/apps/projects">
+								<img alt="friend" class="rounded-circle avatar-sm" src="assets/images/users/user-2.jpg"/>
+							</a>
+							<a placement="top" class="avatar-group-item" href="/apps/projects">
+								<img alt="friend" class="rounded-circle avatar-sm" src="assets/images/users/user-3.jpg"/>
+							</a>
+							<a placement="top" class="avatar-group-item" href="/apps/projects">
+								<img alt="friend" class="rounded-circle avatar-sm" src="assets/images/users/user-4.jpg"/>
+							</a>
+							<a placement="top" class="avatar-group-item" href="/apps/projects">
+								<img alt="friend" class="rounded-circle avatar-sm" src="assets/images/users/user-5.jpg"/>
+							</a>
+							<div class="form-check checkteam">
+								<label for="customCheck1" class="form-check-label"></label>
+								<input type="checkbox" id="customCheck1" name="customCheck1" class="form-check-input">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <a class="btn btn-primary" href="/base-ui/cards">Go somewhere</a> -->
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-12">
+						<label for="exampleFormControlInput1" class="form-label">Tittle</label>
+						<input type="text" class="form-control" name="tittlenoty" [(ngModel)]="data.title" />
+					</div>
+					<div class="col-md-12">
+						<label for="exampleFormControlInput1" class="form-label">Description</label>
+						<textarea type="textarea" class="form-control" name="describe" [(ngModel)]="data.describe"></textarea>
+					</div>
+					<div class="col-md-12">
+						<label for="exampleFormControlInput1" class="form-label">Data Json</label>
+						<input type="text" class="form-control" name="jsondata" [(ngModel)]="data.data" />
+					</div>
+					<div class="col-md-12">
+						<pre>{{objectTopic | json}}</pre>
+					</div>
+					<div class="col-md-12 mt-3">
+						<button class="btn bg-primary text-white" (click)="save()">Send</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,64 @@
+.md-36{
+	font-size: 20px;
+}
+
+.size-25{
+	font-size: 25px;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.btn-label-right {
+    margin: -0.45rem -2.9rem -0.45rem 0.9rem;
+    padding: 0.45rem 0.9rem;
+    background-color: rgba(50, 58, 70, 0.1);
+    display: inline-block;
+}
+
+.app-search .form-control {
+    border: none;
+    height: 38px;
+    padding-left: 20px;
+    padding-right: 0;
+    color: #323a46;
+    background-color: var(--ct-topbar-search-bg);
+    box-shadow: none;
+    border-radius: 30px 0 0 30px;
+}
+
+.btn-search{
+	background: #e2e6ea;
+    border-radius: 0px 0px 0px 0px;
+}
+
+.t-height{
+	height: 62vh;
+}
+
+.pos-right{
+	position: absolute;
+    right: -40px;
+    bottom: 0;
+}
+
+.card-new{
+	background: linear-gradient(180deg, #E2E2E2, #CCCCCC);
+    border-radius: 12px;
+    border: 1px solid white;
+}
+
+.pos-close{
+	position: absolute;
+	top:2px;
+	right: 6px;
+}
+
+br{
+	border-right: 1px solid #d2d2d2;
+}
+
+.mr-2{
+	margin-right: 5px;
+}

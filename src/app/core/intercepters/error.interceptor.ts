@@ -24,9 +24,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 					// auto logout if 401 response returned from api
 					this.authenticationService.logout();
 					location.reload();
-				}
-				else if(err.status === 502){
-					alert("interceptor success");
+				} else if (err.status === 502) {
+					alert('interceptor success');
 				}
 
 				const error = err.error.message || err.statusText;

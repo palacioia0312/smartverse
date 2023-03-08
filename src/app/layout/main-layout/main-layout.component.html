@@ -2,7 +2,7 @@
 	<app-topbar (mobileMenuButtonClicked)="onToggleMobileMenu()" layoutType="vertical"></app-topbar>
 	<app-left-sidebar [includeUserProfile]="showSidebarUserInfo"></app-left-sidebar>
 
-	<div class="content-page">
+	<div class="content-page mb-0 pb-0">
 		<div class="content">
 			<div class="container-fluid" *ngIf="reRender">
 				<router-outlet></router-outlet>

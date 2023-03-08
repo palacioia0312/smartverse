@@ -54,11 +54,21 @@ export class NeighborhoodComponent implements OnInit {
 		this._fetchData();
 	}
 
-	_fetchData() {
-		this._http.get('/config/neighborhood',true).subscribe((res:any)=>{
-			debugger;
-		   console.log(res);
-		})
+	async _fetchData() {
+		// this._http.get('/config/neighborhood',true).subscribe((res:any)=>{
+		// 	debugger;
+		//    console.log(res);
+		// })
+		const response = await fetch('https://x136cxo46d.execute-api.us-west-2.amazonaws.com', {
+			method: 'GET',
+			headers: {
+				"accept": "*/*",
+			},
+		  })
+
+		  const {data, errors} = await response.json();
+		  console.log(data)
+
     }
 
 	fnModal(action: string): void {

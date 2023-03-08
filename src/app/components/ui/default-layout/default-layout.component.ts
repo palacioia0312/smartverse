@@ -1,28 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-default-layout',
-  templateUrl: './default-layout.component.html',
-  styleUrls: ['./default-layout.component.scss']
+	selector: 'app-default-layout',
+	templateUrl: './default-layout.component.html',
+	styleUrls: ['./default-layout.component.scss'],
 })
 export class DefaultLayoutComponent implements OnInit {
+	@Input() hasLogo?: boolean = true;
+	@Input() cardClass?: string = '';
+	constructor() {}
 
-  @Input() hasLogo?: boolean = true;
-  @Input() cardClass?: string = '';
-  constructor () { }
+	ngOnInit(): void {}
 
-  ngOnInit(): void {
+	ngAfterViewInit(): void {
+		// document.body.classList.add('authentication-bg', 'authentication-bg-pattern');
+		// document.getElementById("bgauth").style.backgroundImage = "url('./../../../../assets/images/bg-auth3.png')";
+	}
 
-  }
-
-  ngAfterViewInit(): void {
-    // document.body.classList.add('authentication-bg', 'authentication-bg-pattern');
-    // document.getElementById("bgauth").style.backgroundImage = "url('./../../../../assets/images/bg-auth3.png')";
-
-  }
-
-  ngOnDestroy(): void {
-    // document.body.classList.remove('authentication-bg', 'authentication-bg-pattern');
-  }
-
+	ngOnDestroy(): void {
+		// document.body.classList.remove('authentication-bg', 'authentication-bg-pattern');
+	}
 }
